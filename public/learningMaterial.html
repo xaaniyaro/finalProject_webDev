@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Tablero</title>
+  <title>Material</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -13,31 +13,33 @@
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/learningMaterial_style.css" rel="stylesheet">
+  <link href="css/learning_style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 
 <body>
   <!-- Start your project here-->
   <header>
-      <nav class="navbar fixed-top navbar-expand-lg navbar-dark brown scrolling-navbar">
-          <a class="navbar-brand" href="#"><strong>Eventos</strong></a>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark green scrolling-navbar">
+          <a class="navbar-brand" href="#"><strong>Material</strong></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link waves-effect waves-light" href="#">Tablero <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Evaluaciones</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Torneos</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Contacto</a>
-                  </li>
+                    <li class="nav-item active">
+                        <a class="nav-link waves-effect waves-light" href="./events.html">Eventos <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./evaluations.html">Evaluaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./tournaments.html">Convocatorias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="./contact.html">Contacto</a>
+                    </li>
               </ul>
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
@@ -48,7 +50,40 @@
       </nav>
   </header>
   <main>
-                    
+        <section class= "dashboard">
+                <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">
+                          <i class="material-icons">filter_list</i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                          <button class="dropdown-item" type="button">Matemáticas</button>
+                          <button class="dropdown-item" type="button">Lecturas</button>
+                          <button class="dropdown-item" type="button">Español</button>
+                        </div>
+                      </div>
+        <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Panel title</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+              </div>
+        <div class="card">
+                <div class="card-body">
+                <h5 class="card-title">Panel title</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+            </div>
+        <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Panel title</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#!" class="btn btn-primary">Button</a>
+                </div>
+                </div>
+        </section> 
   </main>      
     
   

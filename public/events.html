@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Portal</title>
+  <title>Eventos</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
@@ -14,30 +14,32 @@
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/events_style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 
 <body>
   <!-- Start your project here-->
   <header>
-      <nav class="navbar fixed-top navbar-expand-lg navbar-dark brown scrolling-navbar">
-          <a class="navbar-brand" href="#"><strong>Eventos</strong></a>
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark green scrolling-navbar">
+          <a class="navbar-brand" href="./events.html"><strong>Eventos</strong></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link waves-effect waves-light" href="#">Tablero <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Evaluaciones</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Torneos</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Contacto</a>
-                  </li>
+                <li class="nav-item active">
+                    <a class="nav-link waves-effect waves-light" href="./evaluations.html">Evaluaciones <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="./learningMaterial.html">Material</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="./tournaments.html">Convocatorias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="./contact.html">Contacto</a>
+                </li>
               </ul>
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
@@ -54,7 +56,9 @@
          
               <!-- Card image -->
               <div class="view overlay">
+                <button class="buttonClose"><i class="material-icons">close</i></button>
                 <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/food.jpg" alt="Card image cap">
+                
                 <a>
                   <div class="mask rgba-white-slight"></div>
                 </a>
@@ -78,9 +82,6 @@
               <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                 <ul class="list-unstyled list-inline font-small">
                   <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
-                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="far fa-comments pr-1"></i>12</a></li>
-                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fab fa-facebook-f pr-1"> </i>21</a></li>
-                  <li class="list-inline-item"><a href="#" class="white-text"><i class="fab fa-twitter pr-1"> </i>5</a></li>
                 </ul>
               </div>
             
@@ -116,9 +117,6 @@
             <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
               <ul class="list-unstyled list-inline font-small">
                 <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
-                <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="far fa-comments pr-1"></i>12</a></li>
-                <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fab fa-facebook-f pr-1"> </i>21</a></li>
-                <li class="list-inline-item"><a href="#" class="white-text"><i class="fab fa-twitter pr-1"> </i>5</a></li>
               </ul>
             </div>
           
@@ -154,9 +152,6 @@
              <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                <ul class="list-unstyled list-inline font-small">
                  <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
-                 <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="far fa-comments pr-1"></i>12</a></li>
-                 <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fab fa-facebook-f pr-1"> </i>21</a></li>
-                 <li class="list-inline-item"><a href="#" class="white-text"><i class="fab fa-twitter pr-1"> </i>5</a></li>
                </ul>
              </div>
            
@@ -191,21 +186,39 @@
               <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                 <ul class="list-unstyled list-inline font-small">
                   <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
-                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="far fa-comments pr-1"></i>12</a></li>
-                  <li class="list-inline-item pr-2"><a href="#" class="white-text"><i class="fab fa-facebook-f pr-1"> </i>21</a></li>
-                  <li class="list-inline-item"><a href="#" class="white-text"><i class="fab fa-twitter pr-1"> </i>5</a></li>
                 </ul>
               </div>
             
             </div>
             <!-- /Card -->
   </section>
+  <button id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal"><i class="material-icons">add</i></button> 
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar evento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form class="text-center" action="#!">
+              <input type="text" id="inputTitulo" class="form-control mb-4" placeholder="Titulo">
+              <input type="email" id="inputContenido" class="form-control mb-4" placeholder="Contenido">
+              <input type="text" id="inputImg" class="form-control mb-4" placeholder="URL de la imagen">
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+        
   </main>      
-    
-  
- 
-  <!-- Start your project here-->
-
   <!-- SCRIPTS -->
   <script type="text/javascript" src="js/evets_script.js"></script>
   <!-- JQuery -->
