@@ -234,3 +234,20 @@ footer img {
 footer img:hover { opacity: .83; }
 
 footer img:focus , footer a:focus { outline: none; }
+
+.regButton{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    color: blue;
+    overflow: hidden;
+    outline:none;
+    background-image: none;
+}
+
+.regButtonContainer{
+	display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}

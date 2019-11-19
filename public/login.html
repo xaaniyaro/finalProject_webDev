@@ -5,31 +5,99 @@
     <meta name="viewport" content="width=device-width">
     <title>Bienvenido</title>
     <link href="./css/login_styles.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   </head>
   <body>
     <hgroup>
-        <h1>Welcome!</h1>
+        <h1>Bienvenido</h1>
       </hgroup>
       <form>
         <div class="group">
           <input type="text"><span class="highlight"></span><span class="bar"></span>
-          <label>Name</label>
+          <label>Nombre</label>
         </div>
         <div class="group">
           <input type="email"><span class="highlight"></span><span class="bar"></span>
-          <label>Email</label>
+          <label>Correo electrónico</label>
         </div>
-        <button type="button" class="button buttonBlue">Log in
+        <button type="button" class="button buttonBlue">Iniciar sesión
           <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
         </button>
+        <div class="regButtonContainer">
+            <button id="myBtn" type="button" class="regButton" data-toggle="modal" data-target="#basicExampleModal">Regístrate</button>
+        </div>
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Por favor, llena los siguientes datos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form class="text-center" action="#!">
+                <div class="md-form">
+                    <div class="md-form">
+                        <i class="fas fa-envelope prefix"></i>
+                        <input type="email" id="inputValidationEx" class="form-control validate">
+                        <label for="inputValidationEx" data-error="wrong" data-success="right">Correo electrónico</label>
+                      </div>
+                    <div class="md-form">
+                        <i class="fas fa-lock prefix"></i>
+                        <input type="password" id="inputValidationEx2" class="form-control validate">
+                        <label for="inputValidationEx2" data-error="wrong" data-success="right">Contraseña</label>
+                      </div>
+                      <div class="md-form">
+                          <i class="fas fa-check prefix"></i>
+                          <input type="password" id="inputValidationEx2" class="form-control validate">
+                          <label for="inputValidationEx2" data-error="wrong" data-success="right">Confirma contraseña</label>
+                        </div>
+                        <div class="alert alert-danger" role="alert">
+                            Las contraseñas no coinciden
+                          </div>
+                      <div class="md-form">
+                          <input type="text" id="inputCodigo" class="form-control">
+                          <label for="inputCodigo">Código para director</label>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            Si usted no es director, dejar este campo en blanco
+                          </div>
+                        <div class="alert alert-danger" role="alert">
+                            El código no es correcto, favor de revisarlo
+                          </div>
+                </div>    
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>    
       </form>
       <footer>
-        <p>You Gotta Love Web Development</p>
+        <p>Escuela Primaria "Jesús Morelos Garza"</p>
       </footer>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.js"
-      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"></script>
+
     <script src="./js/login_script.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
   </body>
 </html>
