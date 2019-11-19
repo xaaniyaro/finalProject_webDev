@@ -1,15 +1,24 @@
 .dashboard{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.card{
-    margin: 10px;
+    flex-direction: column;
+    margin-top: 30px;
+    width: 70%;
 }
 
 main{
     margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tableContainer{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dropContainer{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,24 +52,3 @@ i {
     vertical-align: middle;
 }
 
-.buttonClose{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    color: red;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    background-image: none;
-}
-
-.buttonEdit{
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    color: white;
-    overflow: hidden;
-    outline:none;
-    background-image: none;
-}

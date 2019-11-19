@@ -48,7 +48,7 @@
       </nav>
   </header>
   <main>
-        <div class="container py-5 my-5">
+        <div class="container py-5 my-5"> 
                 <section class="p-md-5 mx-md-5 text-center text-lg-left grey z-depth-1"
                   style="background-image: url(https://cdn.pixabay.com/photo/2018/01/18/20/42/pencil-3091204_1280.jpg);">
                   <div class="row d-flex justify-content-center">
@@ -58,22 +58,13 @@
                           <div class="row">
                             <div class="col-lg-4 d-flex mb-2 align-items-center">
                               <div class="avatar mx-4 w-100 white d-flex justify-content-center align-items-center">
-                                <img src="./assets/10224-woman-teacher-icon.png" class="rounded-circle img-fluid z-depth-1" alt="woman avatar">
+                                <img src="./assets/schoolLogo.png" class="rounded-circle img-fluid z-depth-1" alt="woman avatar">
                               </div>
                             </div>
                             <div class="col-lg-8">
-                                <p class="font-weight-bold lead mb-2"><strong>Mtra. Suarez</strong></p>
-                                <p class="font-weight-bold text-muted mb-0">Directora</p>
-                                <p class="text-muted font-weight-light mb-4">
-                                    <ul style="list-style: none;">
-                                        <li>
-                                                Telefono: (811) 123 4567
-                                        </li>
-                                        <li>
-                                                Correo electronico: direccion@jesusmorelos.com
-                                        </li>
-                                    </ul>
-                                 </p>
+                                <p class="font-weight-bold lead mb-2"><strong>Escuela Primaria "Jesús Morelos Garza"</strong></p>
+                                <p></p>
+                                <p class="font-weight-bold text-muted mb-0">Teléfono: (811) 123 4567</p>
                             </div>
                           </div>
                         </div>
@@ -81,7 +72,40 @@
                     </div>
                   </div>
                 </section>
-              </div>           
+              </div>
+              <div class="buttonContainer">
+                    <button id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal">Editar</button>
+              </div>
+              <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar contacto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form class="text-center" action="#!">
+              <div class="md-form">
+                      <input type="text" id="inputNombre" class="form-control">
+                      <label for="inputNombre">Nombre</label>
+                    </div>
+                        <div class="md-form">
+                              <input type="text" id="inputTel" class="form-control">
+                              <label for="inputTel">Teléfono</label>
+                            </div>                        
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+                         
   </main>      
     
   

@@ -20,3 +20,9 @@ main{
 .dropdown{
     padding-bottom: 30px;
 }
+
+.buttonContainer .btn{
+    position: absolute;
+    top: 20%;
+    right: 5%;
+}

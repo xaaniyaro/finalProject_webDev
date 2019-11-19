@@ -42,3 +42,14 @@ main{
 i {
     vertical-align: middle;
 }
+
+.buttonClose{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    color: red;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    background-image: none;
+}

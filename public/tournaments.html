@@ -50,6 +50,15 @@
       </nav>
   </header>
   <main>
+      <section class="searchBar">
+            <div class="input-group md-form form-sm form-2 pl-0">
+                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                      <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                          aria-hidden="true"></i></span>
+                    </div>
+                  </div>
+      </section>
         <section class= "dashboard">
                 <!-- Card -->
                 <div class="card" style="width: 22rem;">
@@ -74,13 +83,14 @@
                       <hr>
                       <!-- Text -->
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  
+                      <a href="http://www.seduzac.gob.mx/portal/documentos/Publicaciones/Slider/Alumno/16102019_Olimpiada_Matematicas.pdf">Más detalles</a>
                     </div>
                   
                     <!-- Card footer -->
                     <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                       <ul class="list-unstyled list-inline font-small">
                         <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
+                        <li class="list-inline-item pr-2"><button class="buttonClose"><i class="material-icons">delete</i></button></li> 
                       </ul>
                     </div>
                   
@@ -109,13 +119,14 @@
                     <hr>
                     <!-- Text -->
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                
+                    <a href="http://www.seduzac.gob.mx/portal/documentos/Publicaciones/Slider/Alumno/16102019_Olimpiada_Matematicas.pdf">Más detalles</a>
                   </div>
                 
                   <!-- Card footer -->
                   <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                     <ul class="list-unstyled list-inline font-small">
                       <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
+                      <li class="list-inline-item pr-2"><button class="buttonClose"><i class="material-icons">delete</i></button></li> 
                     </ul>
                   </div>
                 
@@ -144,13 +155,14 @@
                      <hr>
                      <!-- Text -->
                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                 
+                     <a href="http://www.seduzac.gob.mx/portal/documentos/Publicaciones/Slider/Alumno/16102019_Olimpiada_Matematicas.pdf">Más detalles</a>
                    </div>
                  
                    <!-- Card footer -->
                    <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                      <ul class="list-unstyled list-inline font-small">
                        <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
+                       <li class="list-inline-item pr-2"><button class="buttonClose"><i class="material-icons">delete</i></button></li> 
                      </ul>
                    </div>
                  
@@ -166,10 +178,7 @@
                         <div class="mask rgba-white-slight"></div>
                       </a>
                     </div>
-                  
-                    <!-- Button -->
                     
-                  
                     <!-- Card content -->
                     <div class="card-body">
                   
@@ -178,22 +187,63 @@
                       <hr>
                       <!-- Text -->
                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  
+                      <a href="http://www.seduzac.gob.mx/portal/documentos/Publicaciones/Slider/Alumno/16102019_Olimpiada_Matematicas.pdf">Más detalles</a>
                     </div>
                   
                     <!-- Card footer -->
                     <div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
                       <ul class="list-unstyled list-inline font-small">
                         <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>05/10/2015</li>
+                        <li class="list-inline-item pr-2"><button class="buttonClose"><i class="material-icons">delete</i></button></li> 
                       </ul>
                     </div>
                   
                   </div>
                   <!-- /Card -->
         </section>          
-  </main>      
-  <button id="myBtn"><i class="material-icons">add</i></button> 
-  
+       
+  <button id="myBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#basicExampleModal"><i class="material-icons">add</i></button> 
+  <div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar convocatoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form class="text-center" action="#!">
+                <div class="md-form">
+                        <input type="text" id="inputTitulo" class="form-control">
+                        <label for="inputTitulo">Título</label>
+                      </div>
+                      <div class="md-form">
+                            <textarea id="inputDescripcion" class="form-control md-textarea" rows="1"></textarea>
+                            <label for="inputDescripcion">Descripción</label>
+                          </div>
+                          <div class="md-form">
+                                <input type="text" id="inputLink" class="form-control">
+                                <label for="inputLink">Link de la convocatoria</label>
+                              </div>
+                          <div class="md-form">
+                                <input type="text" id="inputImg" class="form-control">
+                                <label for="inputImg">URL de la imagen</label>
+                              </div>
+                              <div class="md-form">
+                                    <input type="date" id="dateInput" class="form-control">   
+                              </div>                          
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</main> 
  
   <!-- Start your project here-->
 
