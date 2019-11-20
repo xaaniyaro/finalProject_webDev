@@ -41,7 +41,7 @@ function loadPosts() {
       loadPosts();
   });
   
-  $("#searchButton").click(function(){
+$("#searchButton").click(function(){
     let searchString = $("#searchInput").val();
     if(!searchString){
         alert("No hay nada que buscar");
@@ -58,6 +58,7 @@ function loadPosts() {
         data: JSON.stringify(obj),
         success: function(response){
           cardList = [];
+          $(".dashboard > .card").remove();
           response.map(post => cardList.push(post));
         },
         error: function(error){

@@ -1,5 +1,6 @@
 urlBase = "/eventos";
 cardList = [];
+currentEditID = "";
 
 function loadPosts() {
   $(".dashboard > .card").remove();
@@ -22,7 +23,7 @@ function loadPosts() {
       let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
       let cardFooterButtons = 
       $(`<li class="list-inline-item pr-2">
-      <button type="button" class="buttonEdit" id="editPostButton" data-id="${post.id}" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
+      <button type="button" class="buttonEdit" data-id="${post.id}" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
       </li>
       <li class="list-inline-item pr-2">
       <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
@@ -52,25 +53,7 @@ $("#newPostButton").click(function(){
     img : img,
     eventDate : date
   };
-  
-  let title = $(`<h4 class="card-title"> ${title}</h4><hr>`);
-  let description = $(`<p class="card-text"> ${description}</p>`);
-  let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${date}</li>`);
-  let img = $(`<img class="card-img-top" src="${img}" alt="Card image cap"></img>`);
-  let cardFooterButtons = 
-  $(`<li class="list-inline-item pr-2">
-  <button type="button" class="buttonEdit" id="editPostButton" data-id="123" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
-  </li>
-  <li class="list-inline-item pr-2">
-  </li>  `);
-  let cardImg = $(`<div class="view overlay">`).append(img);
-  let cardBody = $(`<div class="card-body">`).append(title,description);
-  let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
-  <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
-  let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
-  $("#list").append(card);
 
-  /*
   $.ajax({
     url: urlBase,
     data: JSON.stringify(obj),
@@ -83,7 +66,8 @@ $("#newPostButton").click(function(){
     error: function(err){
       alert(err.statusText);
     }
-  });*/
+  });
+
 });
 
 $("#list").on('click', ".buttonClose", function(event){
@@ -112,15 +96,7 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-$("#list").on('click', ".buttonEdit", function(event){
-  event.preventDefault();
-  let idU = $(this).data("id");
-  console.log(idU);
-  if(!idU){
-    alert("No id provided");
-    return;
-  }
-
+$("#editPostButton").click(function(){
   let title = $("#inputTituloE").val();
   let description = $("#inputDescripcionE").val();
   let img = $("#inputImgE").val();
@@ -130,7 +106,7 @@ $("#list").on('click', ".buttonEdit", function(event){
   let year = dateRaw.getFullYear();
   let date = day + '/' + month + '/' + year;
   let body = $.extend({}, {
-      id: idU,
+      id: currentEditID,
       title: title != "" ? title : undefined,
       description: description != "" ? description : undefined,
       img: img != "" ? img : undefined,
@@ -138,7 +114,7 @@ $("#list").on('click', ".buttonEdit", function(event){
   });
 
   $.ajax({
-      url: urlBase + '/' + idU,
+      url: urlBase + '/' + currentEditID,
       method: "PUT",
       data: JSON.stringify(body),
       contentType: "application/json",
@@ -151,6 +127,11 @@ $("#list").on('click', ".buttonEdit", function(event){
           alert(err.statusText);
       }
   });
+});
+
+$("#list").on('click', ".buttonEdit", function(event){
+  event.preventDefault();
+  currentEditID = $(this).data("id");
 });
 
 function cleanInputs(){
