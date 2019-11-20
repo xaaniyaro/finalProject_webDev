@@ -45,7 +45,7 @@
               </ul>
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Salir</a>
+                      <a class="nav-link waves-effect waves-light" href="./login.html">Salir</a>
                   </li>
               </ul>
           </div>
@@ -54,14 +54,17 @@
   <main>
       <section class="searchBar">
             <div class="input-group md-form form-sm form-2 pl-0">
-                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control my-0 py-1 amber-border" id="searchInput" type="text" placeholder="Busca" aria-label="Search">
                     <div class="input-group-append">
-                      <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
-                          aria-hidden="true"></i></span>
+                      <button type="button" id="searchButton">
+                          <span class="input-group-text amber lighten-3" id="basic-text1"><i class="fas fa-search text-grey"
+                            aria-hidden="true"></i></span>
+                      </button>
                     </div>
+                    <button type="button" id="todoButton" class="btn btn-primary btn-sm">Todo</button>
                   </div>
       </section>
-        <section class= "dashboard">
+        <section class= "dashboard" id="list">
                 <!-- Card -->
                 <div class="card" style="width: 22rem;">
                
@@ -240,7 +243,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
+        <button type="button" id="newPostButton" class="btn btn-primary" data-dismiss="modal">Agregar</button>
       </div>
     </div>
   </div>
@@ -249,10 +252,10 @@
  
   <!-- Start your project here-->
 
-  <!-- SCRIPTS -->
-  <script type="text/javascript" src="js/tournaments_script.js"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="js/tournaments_script.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->

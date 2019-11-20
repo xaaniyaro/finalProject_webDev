@@ -45,7 +45,7 @@
               </ul>
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Salir</a>
+                      <a class="nav-link waves-effect waves-light" href="./login.html">Salir</a>
                   </li>
               </ul>
           </div>
@@ -60,12 +60,13 @@
                             Grupo
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-                            <button class="dropdown-item" type="button">1A</button>
-                            <button class="dropdown-item" type="button">2B</button>
-                            <button class="dropdown-item" type="button">3C</button>
-                            <button class="dropdown-item" type="button">4D</button>
-                            <button class="dropdown-item" type="button">5E</button>
-                            <button class="dropdown-item" type="button">6F</button>
+                            <button class="dropdown-item" data-type="1A" type="button">1A</button>
+                            <button class="dropdown-item" data-type="2B" type="button">2B</button>
+                            <button class="dropdown-item" data-type="3C" type="button">3C</button>
+                            <button class="dropdown-item" data-type="4D" type="button">4D</button>
+                            <button class="dropdown-item" data-type="5E" type="button">5E</button>
+                            <button class="dropdown-item" data-type="6F" type="button">6F</button>
+                            <button class="dropdown-item" id="todoButton" type="button">Todo</button>
                         </div>
                         </div>
             </div>
@@ -79,7 +80,7 @@
                                         <th scope="col" style="width: 10%;"></th>
                                       </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="table">
                                       <tr>
                                         <td>Mark</td>
                                         <td>6F</td>
@@ -131,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
+        <button type="button" id="newPostButton" class="btn btn-primary" data-dismiss="modal">Agregar</button>
       </div>
     </div>
   </div>
@@ -142,10 +143,10 @@
  
   <!-- Start your project here-->
 
-  <!-- SCRIPTS -->
-  <script type="text/javascript" src="js/evaluations_script.js"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="js/evaluations_script.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->

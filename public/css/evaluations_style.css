@@ -52,3 +52,6 @@ i {
     vertical-align: middle;
 }
 
+#todoButton{
+    display: none;
+}

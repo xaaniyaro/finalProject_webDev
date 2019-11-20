@@ -1,3 +1,33 @@
+
+$("#registrarButton").click(function(){
+  let email = $("#inputEmail").val();
+  let pass = $("#inputPass").val();
+  let passC = $("#inputPassC").val();
+
+  if(pass != passC){
+    $("#alertPass").show();
+    return;
+  }
+
+  let obj = {
+      email : email,
+      pass : pass,
+  };
+
+  $.ajax({
+      url: urlBase,
+      data: JSON.stringify(obj),
+      method: "POST",
+      contentType: "application/json",
+      success: function(){
+      
+      },
+      error: function(err){
+      alert(err.statusText);
+      }
+  });
+});
+
 $(window, document, undefined).ready(function() {
 
   $('input').blur(function() {
@@ -33,3 +63,6 @@ $(window, document, undefined).ready(function() {
   });
 
 });
+
+
+

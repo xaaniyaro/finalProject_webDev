@@ -45,24 +45,24 @@
               </ul>
               <ul class="navbar-nav nav-flex-icons">
                   <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light" href="#">Salir</a>
+                      <a class="nav-link waves-effect waves-light" href="./login.html">Salir</a>
                   </li>
               </ul>
           </div>
       </nav>
   </header>
   <main>
-        <section class= "dashboard">
+        <section class= "dashboard" id="list">
                 <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
                           aria-haspopup="true" aria-expanded="false">
                           <i class="material-icons">filter_list</i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-                          <button class="dropdown-item" type="button">Matemáticas</button>
-                          <button class="dropdown-item" type="button">Lecturas</button>
-                          <button class="dropdown-item" type="button">Español</button>
-                          <button class="dropdown-item" type="button">Todo</button>
+                          <button class="dropdown-item" data-type="Matematicas">Matemáticas</button>
+                          <button class="dropdown-item" data-type="Lecturas" >Lecturas</button>
+                          <button class="dropdown-item" data-type="Espanol" >Español</button>
+                          <button class="dropdownTodo" id="todoButton">Todo</button>
                         </div>
                       </div>
         <div class="card">
@@ -125,7 +125,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
+        <button type="button" class="btn btn-primary" id="newPostButton">Agregar</button>
       </div>
     </div>
   </div>
@@ -136,10 +136,10 @@
  
   <!-- Start your project here-->
 
-  <!-- SCRIPTS -->
-  <script type="text/javascript" src="js/learningMaterial_script.js"></script>
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- SCRIPTS -->
+  <script type="text/javascript" src="js/learningMaterial_script.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->

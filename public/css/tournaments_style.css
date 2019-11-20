@@ -53,3 +53,18 @@ i {
     outline:none;
     background-image: none;
 }
+
+#searchButton{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    background-image: none;
+}
+
+#todoButton{
+    margin-left: 20px;
+    display: none;
+}
