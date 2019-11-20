@@ -112,7 +112,8 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-$("#editPostButton").click(function(){
+$("#list").on('click', ".buttonEdit", function(event){
+  event.preventDefault();
   let idU = $(this).data("id");
   console.log(idU);
   if(!idU){
