@@ -88,7 +88,7 @@ app.delete("/eventos/:id", (req, res, next) => {
 });
 
 //edita un evento
-app.put("/eventos/:id", jsonParser, (req, res, next) => {
+app.put("/eventos/:id", jsonParser, (req, res) => {
 	let bodyID = req.body.id;
     let paramsID = req.params.id;
 
@@ -137,16 +137,17 @@ app.get("/convocatorias", (req, res, next) => {
 });
 
 //despliega convocatorias por nombre
-app.get("/convocatorias?nombre=value", (req, res, next) => {
-	let searchString = req.body.searchString;
-	if(!searchString){
+app.post("/convocatorias/name", jsonParser, (req, res) => {
+	let searchStr = req.body.searchString;
+    console.log(`${searchStr}`);
+	if(!searchStr){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
 			message : res.statusMessage,
 			status : 406
 		});
 	}
-	TournamentList.getTournamentsByName(searchString)
+	TournamentList.getTournamentsByName(searchStr)
         .then(tournaments => {
             res.statusMessage = "Todas las convocatorias han sido mostradas";
 			return res.status(200).json(tournaments);
@@ -214,30 +215,6 @@ app.delete("/convocatorias/:id", (req, res, next) => {
 });
 
 //////////////// EVALUACIONES ////////
-//despliega evaluaciones filtradas por grupo
-app.get("/evaluaciones?grupo=value", (req, res, next) => {
-	let group = req.body.type;
-	if(!group){
-		res.statusMessage = "uno de los campos esta vacio";
-		return res.status(406).json({
-			message : res.statusMessage,
-			status : 406
-		});
-	}
-    EvaluationList.getEvaluationsByGroup(group)
-        .then(evaluations => {
-            res.statusMessage = "Todas las evaluaciones filtradas han sido mostradas";
-			return res.status(200).json(evaluations);
-        })
-        .catch(() => {
-            res.statusMessage = "Algo salio mal con la base de datos favor de intentar mas tarde";
-            return res.status(500).json({
-                message: res.statusMessage,
-                status: 500
-            });
-        });
-});
-
 //agrega una nueva evaluacion
 app.post("/evaluaciones", jsonParser, (req, res, next) => {
 	let name = req.body.nombre;
@@ -247,7 +224,7 @@ app.post("/evaluaciones", jsonParser, (req, res, next) => {
 	if(!name || !grade || !group){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
-			message : "uno de los campos esta vacio",
+			message : res.status.message,
 			status : 406
 		});
 	}
@@ -265,6 +242,30 @@ app.post("/evaluaciones", jsonParser, (req, res, next) => {
 				res.statusMessage = "evaluacion añadida con exito",
             	res.status(201).json(returnedEvaluation))
             .catch(err => { throw Error(err); })
+});
+
+//despliega evaluaciones filtradas por grupo
+app.post("/evaluaciones/grupo", jsonParser, (req, res, next) => {
+    let group = req.body.type;
+    if(!group){
+        res.statusMessage = "uno de los campos esta vacio";
+        return res.status(406).json({
+            message : res.statusMessage,
+            status : 406
+        });
+    }
+    EvaluationList.getEvaluationsByGroup(group)
+        .then(evaluations => {
+            res.statusMessage = "Todas las evaluaciones filtradas han sido mostradas";
+            return res.status(200).json(evaluations);
+        })
+        .catch(() => {
+            res.statusMessage = "Algo salio mal con la base de datos por favor intentar mas tarde";
+            return res.status(500).json({
+                message: res.statusMessage,
+                status: 500
+            });
+        });
 });
 
 //borra una evalucion

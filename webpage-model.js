@@ -64,7 +64,7 @@ let TournamentList = {
                     .catch(err => { throw Error(err) });
     },
     getTournamentsByName: async function(searchTerm) {
-        return Tournaments.find({title : "/" + searchTerm  + "/"})
+        return Tournaments.find({title : {$regex : searchTerm}})
                     .then(Tournaments => Tournaments)
                     .catch(err => { throw Error(err) });
     },
@@ -78,7 +78,7 @@ let evaluationsSchema = mongoose.Schema({
     grupo : {type : String, require : true}
 });
 
-let evaluations = mongoose.model('Evaluaciones', evaluationsSchema);
+let Evaluations = mongoose.model('Evaluaciones', evaluationsSchema);
 
 let EvaluationList = {
     getEvaluationsByGroup: async function(Group) {
@@ -107,11 +107,11 @@ let materialsSchema = mongoose.Schema({
     UserID : {type : String, require : true}
 });
 
-let materials = mongoose.model('Materiales', materialsSchema);
+let Materials = mongoose.model('Materiales', materialsSchema);
 
 let MaterialList = {
     getAllMaterials: async function() {
-        return Tournaments.find()
+        return Materials.find()
                     .then(Tournaments => Tournaments)
                     .catch(err => { throw Error(err) });
     },

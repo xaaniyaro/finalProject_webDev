@@ -47,17 +47,20 @@ function loadPosts() {
         alert("No hay nada que buscar");
         return;
     }
+    console.log(searchString);
     $("#todoButton").show();
     let obj ={
         searchString: searchString
     };
+    console.log(obj.searchString);
     $.ajax({
-        url: urlBase + "?nombre=value",
-        method: "GET",
-        datatype: "json",
+        url: urlBase + "/name",
+        method: "POST",
+        contentType: "application/json",
         data: JSON.stringify(obj),
         success: function(response){
           cardList = [];
+          $(".dashboard > .card").remove();
           response.map(post => cardList.push(post));
         },
         error: function(error){

@@ -1,4 +1,4 @@
-urlBase = "";
+urlBase = "/materiales";
 cardList = [];
 
 function loadPosts() {
@@ -59,7 +59,7 @@ $("#todoButton").click(function(){
     loadPosts();
 });
 
-  $("#list").on('click', ".dropdown-item", function(event){
+$("#list").on('click', ".dropdown-item", function(event){
     event.preventDefault();
     let type = $(this).data("type");
     if(!type){
@@ -130,5 +130,6 @@ function cleanInputs(){
     $("textarea").val("");
     $("input[type=text]").val("");
     $('input[type=date]').val("");
-  
-  }
+}
+
+loadPosts();

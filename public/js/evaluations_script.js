@@ -1,7 +1,7 @@
 urlBase = "/evaluaciones";
 tableList = [];
-
-function loadPosts() {
+type = "";
+/*function loadPosts() {
   $("#table > tr").remove();
   $.ajax({
     url: urlBase,
@@ -24,81 +24,21 @@ function loadPosts() {
       $("#table").append(reg);
     })
   });
-}
+}*/
 
-$("#newPostButton").click(function(){
-    let nombre = $("#inputNombre").val();
-    let grupo = $("#inputGrupo").val();
-    let grade = $("#inputGrade").val();
-    let obj = {
-        nombre : nombre,
-        grupo : grupo,
-        grade: grade
-    };
-
-    $.ajax({
-        url: urlBase,
-        data: JSON.stringify(obj),
-        method: "POST",
-        contentType: "application/json",
-        success: function(){
-        loadPosts();
-        cleanInputs();
-        },
-        error: function(err){
-        alert(err.statusText);
-        }
-    });
-});
-
-$("#table").on('click', ".btn .btn-danger", function(event){
-    event.preventDefault();
-    let id = $(this).data("id");
-    console.log(id);
-    if(!id){
-      alert("No id provided");
-      return;
-    }
-  
-    let body = {
-      id : id
-    }
-  
-    $.ajax({
-      url: urlBase + '/' + id,
-      method: "DELETE",
-      data: JSON.stringify(body),
-      contentType: "application/json",
-      success: function() {
-        loadPosts();
-      },
-      error: function(err){
-        alert(err.statusText);
-      }
-    });
-});
-
-$("#todoButton").click(function(){
-    $("#todoButton").hide();
-    loadPosts();
-});
-
-$(".dropdown").on('click', ".dropdown-item", function(event){
-    event.preventDefault();
-    let type = $(this).data("type");
+function loadPostsByGroup(){
+    $("#table > tr").remove();
     if(!type){
         alert("No hay nada que buscar");
         return;
     }
-    $("#todoButton").show();
     let obj ={
         type: type
     };
-    $("#table > tr").remove();
     $.ajax({
-      url: urlBase + "?grupo=value",
-      method: "GET",
-      datatype: "json",
+      url: urlBase + "/grupo",
+      method: "POST",
+      contentType: "application/json",
       data: JSON.stringify(obj),
       success: function(response){
         tableList = [];
@@ -117,10 +57,67 @@ $(".dropdown").on('click', ".dropdown-item", function(event){
         $("#table").append(reg);
       })
     });
+}
+
+$("#newPostButton").click(function(){
+    let nombre = $("#inputNombre").val();
+    let grupo = $("#inputGrupo").val();
+    let grade = $("#inputPromedio").val();
+    let obj = {
+        nombre : nombre,
+        grupo : grupo,
+        grade: grade
+    };
+
+    $.ajax({
+        url: urlBase,
+        data: JSON.stringify(obj),
+        method: "POST",
+        contentType: "application/json",
+        success: function(){
+        loadPostsByGroup();
+        cleanInputs();
+        },
+        error: function(err){
+        alert(err.statusText);
+        }
+    });
+});
+
+$("#table").on('click', ".btn-danger", function(event){
+    event.preventDefault();
+    let id = $(this).data("id");
+    if(!id){
+      alert("No id provided");
+      return;
+    }
+  
+    let body = {
+      id : id
+    }
+  
+    $.ajax({
+      url: urlBase + '/' + id,
+      method: "DELETE",
+      data: JSON.stringify(body),
+      contentType: "application/json",
+      success: function() {
+        loadPostsByGroup();
+      },
+      error: function(err){
+        alert(err.statusText);
+      }
+    });
+});
+
+$(".dropdown").on('click', ".dropdown-item", function(event){
+    event.preventDefault();
+    type = $(this).data("type");
+    loadPostsByGroup();
 });
 
 function cleanInputs(){
   $("input[type=text]").val("");
 }
 
-loadPosts();
+$("#table > tr").remove();
