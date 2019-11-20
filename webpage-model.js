@@ -3,11 +3,11 @@ mongoose.Promise = global.Promise;
 
 ///////////// EVENTOS ////////////////
 let eventsSchema = mongoose.Schema({
-    ID : {type : String, require : true},
-    Title : {type : String, require : true},
-    Description : {type : String, require : true},
-    Image_URL : {type : String, require : true},
-    Date : {type : String, require : true}
+    id : {type : String, require : true},
+    title : {type : String},
+    description : {type : String},
+    img : {type : String},
+    date : {type : String}
 });
 
 let Events = mongoose.model('Eventos', eventsSchema);
@@ -24,12 +24,12 @@ let EventList = {
                     .catch(err => { throw Error(err) });
     },
     deleteEvent: async function(ID) {
-        return Events.findOneAndDelete({ID: ID})
+        return Events.findOneAndDelete({id : ID})
                     .then(deleted => deleted)
                     .catch(err => { throw Error(err) });
     },
     updateEvent: async function(newEvent) {
-        return Events.findOneAndUpdate({ID: newEvent.ID}, {$set: newEvent})
+        return Events.findOneAndUpdate({id: newEvent.id}, {$set: newEvent})
                     .then(Event => Event)
                     .catch(err => { throw Error(err) });
     }
@@ -37,15 +37,15 @@ let EventList = {
 
 /////////// CONVOCATORIAS /////////////
 let tournamentsSchema = mongoose.Schema({
-    ID : {type : String, require : true},
-    Title : {type : String, require : true},
-    Description : {type: String, require : true},
-    Image_URL : {type: String, require : true},
-    Date : {type : String, require : true},
-    Link : {type : String, require : true}
+    id : {type : String, require : true},
+    title : {type : String},
+    description : {type: String},
+    img : {type: String},
+    link : {type : String},
+    date : {type : String}
 });
 
-let tournaments = mongoose.model('Convocatorias', tournamentsSchema);
+let Tournaments = mongoose.model('Convocatorias', tournamentsSchema);
 
 let TournamentList = {
     getAllTournaments: async function() {
@@ -59,12 +59,12 @@ let TournamentList = {
                     .catch(err => { throw Error(err) });
     },
     deleteTournament: async function(ID) {
-        return Tournaments.findOneAndDelete({ID: ID})
+        return Tournaments.findOneAndDelete({id : ID})
                     .then(deleted => deleted)
                     .catch(err => { throw Error(err) });
     },
     getTournamentsByName: async function(searchTerm) {
-        return Tournaments.find({Title : {$regex : searchTerm}})
+        return Tournaments.find({title : "/" + searchTerm  + "/"})
                     .then(Tournaments => Tournaments)
                     .catch(err => { throw Error(err) });
     },
@@ -72,17 +72,17 @@ let TournamentList = {
 
 /////////////// EVALUACIONES /////////////
 let evaluationsSchema = mongoose.Schema({
-    ID : {type : String, require : true},
-    Name : {type : String, require : true},
-    Grade : {type : String, require : true},
-    Group : {type : String, require : true}
+    id : {type : String, require : true},
+    nombre : {type : String, require : true},
+    grade : {type : String, require : true},
+    grupo : {type : String, require : true}
 });
 
 let evaluations = mongoose.model('Evaluaciones', evaluationsSchema);
 
 let EvaluationList = {
     getEvaluationsByGroup: async function(Group) {
-        return Evaluations.find({Group : Group})
+        return Evaluations.find({grupo : Group})
                     .then(Evaluations => Evaluations)
                     .catch(err => { throw Error(err) });
     },
@@ -92,7 +92,7 @@ let EvaluationList = {
                     .catch(err => { throw Error(err) });
     },
     deleteEvaluation: async function(ID) {
-        return Evaluations.findOneAndDelete({ID: ID})
+        return Evaluations.findOneAndDelete({id : ID})
                     .then(deleted => deleted)
                     .catch(err => { throw Error(err) });
     }
@@ -104,7 +104,6 @@ let materialsSchema = mongoose.Schema({
     Title : {type : String, require : true},
     Description : {type : String, require : true},
     Subject : {type : String, require : true},
-    Link : {type : String, require : true}
     UserID : {type : String, require : true}
 });
 
@@ -135,9 +134,8 @@ let MaterialList = {
 
 /////////////// CONTACT /////////////////
 let contactSchema = mongoose.Schema({
-    Title : {type : String, require : true},
-    Phone : {type : String, require : true},
-    Email : {type : String, require : true},
+    title : {type : String, require : true},
+    tel : {type : String, require : true},
 });
 
 let Contacts = mongoose.model('Contacto', contactSchema);

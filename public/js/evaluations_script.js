@@ -1,4 +1,4 @@
-urlBase = "";
+urlBase = "/evaluaciones";
 tableList = [];
 
 function loadPosts() {
@@ -96,7 +96,7 @@ $(".dropdown").on('click', ".dropdown-item", function(event){
     };
     $("#table > tr").remove();
     $.ajax({
-      url: urlBase,
+      url: urlBase + "?grupo=value",
       method: "GET",
       datatype: "json",
       data: JSON.stringify(obj),
