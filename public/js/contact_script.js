@@ -1,4 +1,4 @@
-urlBase = "";
+urlBase = "/contacto";
 info = [];
 
 function loadInfo() {
@@ -9,7 +9,7 @@ function loadInfo() {
       datatype: "json",
       success: function(response){
         cardList = [];
-        response.map(post => info.push(post));
+        cardList.push(response);
       },
       error: function(error){
         console.log(error);
@@ -39,7 +39,7 @@ $("#addButton").click(function(){
         tel: tel != "" ? tel : undefined
     });
     $.ajax({
-        url: urlBase + '/' + id,
+        url: urlBase,
         method: "PUT",
         data: JSON.stringify(body),
         contentType: "application/json",

@@ -39,10 +39,10 @@ app.get("/eventos", (req, res, next) => {
 
 //agrega un evento nuevo
 app.post("/eventos", jsonParser, (req, res, next) => {
-	let title = req.body.Title;
-	let description = req.body.Description;
-	let imageUrl = req.body.Image_URL;
-	let date = req.body.Date;
+	let title = req.body.title;
+	let description = req.body.description;
+	let imageUrl = req.body.img;
+	let date = req.body.eventDate;
 
 	if(!title || !description || !imageUrl || !date){
 		res.statusMessage = "uno de los campos esta vacio";
@@ -54,14 +54,13 @@ app.post("/eventos", jsonParser, (req, res, next) => {
 
 	let id = uuidv4();
 	let returnedEvent = {
-		ID : id,
-		Title : title,
-		Description : description,
-		Image_URL : imageUrl,
-		Date : date
+		id : id,
+		title : title,
+		description : description,
+		img : imageUrl,
+		date : date
 	};
-
-    PostList.post(returnedEvent)
+    EventList.createEvent(returnedEvent)
             .then(event => 
 				res.statusMessage = "evento añadido con exito",
             	res.status(201).json(returnedEvent))
@@ -70,7 +69,7 @@ app.post("/eventos", jsonParser, (req, res, next) => {
 
 //borra un evento
 app.delete("/eventos/:id", (req, res, next) => {
-	let id = req.params.ID;    
+	let id = req.params.id;    
     EventList.deleteEvent(id)
         .then(deleted => {
             if(deleted) {
@@ -90,21 +89,17 @@ app.delete("/eventos/:id", (req, res, next) => {
 
 //edita un evento
 app.put("/eventos/:id", jsonParser, (req, res, next) => {
-	let bodyID = req.body.ID;
-	let title = req.body.Title;
-	let description = req.body.Description;
-	let imageUrl = req.body.Image_URL;
-	let date = req.body.Date;
-	let paramsID = req.params.ID;
+	let bodyID = req.body.id;
+    let paramsID = req.params.id;
 
     if (!bodyId) {
         res.statusMessage = "no se paso el ID";
         return res.status(406).json({message: res.statusMessage, status: 406});
     }
 
-    if (paramsId != bodyId) {
-        res.statusMessage = "No son iguales los IDs del cuerpo y del parametro";
-        return res.status(409).json({message: res.statusMessage, status: 409});
+    if (paramsID != bodyID) {
+        res.statusMessage = "no coinciden el paramsID y el body ID";
+        return res.status(406).json({message: res.statusMessage, status: 406});
     }
 
     EventList.updateEvent(req.body)
@@ -143,15 +138,15 @@ app.get("/convocatorias", (req, res, next) => {
 
 //despliega convocatorias por nombre
 app.get("/convocatorias?nombre=value", (req, res, next) => {
-	let name = req.body.name;
-	if(!name){
+	let searchString = req.body.searchString;
+	if(!searchString){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
 			message : res.statusMessage,
 			status : 406
 		});
 	}
-	TournamentList.getTournamentsByName(name)
+	TournamentList.getTournamentsByName(searchString)
         .then(tournaments => {
             res.statusMessage = "Todas las convocatorias han sido mostradas";
 			return res.status(200).json(tournaments);
@@ -167,11 +162,11 @@ app.get("/convocatorias?nombre=value", (req, res, next) => {
 
 //agrega una nueva convocatorias
 app.post("/convocatorias", jsonParser, (req, res, next) => {
-	let title = req.body.Title;
-	let description = req.body.Description;
-	let imageUrl = req.body.Image_URL;
-	let date = req.body.Date;
-	let link = req.body.Link;
+	let title = req.body.title;
+	let description = req.body.description;
+	let imageUrl = req.body.img;
+	let date = req.body.eventDate;
+	let link = req.body.link;
 
 	if(!title || !description || !imageUrl || !date | !link){
 		res.statusMessage = "uno de los campos esta vacio";
@@ -183,16 +178,16 @@ app.post("/convocatorias", jsonParser, (req, res, next) => {
 
 	let id = uuidv4();
 	let returnedTournament = {
-		ID : id,
-		Title : title,
-		Description : description,
-		Image_URL : imageUrl,
-		Date : date,
-		Link : link
+		id : id,
+		title : title,
+		description : description,
+		img : imageUrl,
+		date : date,
+		link : link
 	};
 
-    PostList.post(returnedTournament)
-            .then(event => 
+    TournamentList.createTournament(returnedTournament)
+            .then(tournament => 
 				res.statusMessage = "convocatoria añadida con exito",
             	res.status(201).json(returnedTournament))
             .catch(err => { throw Error(err); })
@@ -200,7 +195,7 @@ app.post("/convocatorias", jsonParser, (req, res, next) => {
 
 //borra una convocatoria
 app.delete("/convocatorias/:id", (req, res, next) => {
-	let id = req.params.ID;    
+	let id = req.params.id;    
     TournamentList.deleteTournament(id)
         .then(deleted => {
             if(deleted) {
@@ -221,7 +216,7 @@ app.delete("/convocatorias/:id", (req, res, next) => {
 //////////////// EVALUACIONES ////////
 //despliega evaluaciones filtradas por grupo
 app.get("/evaluaciones?grupo=value", (req, res, next) => {
-	let group = req.body.group;
+	let group = req.body.type;
 	if(!group){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
@@ -245,9 +240,9 @@ app.get("/evaluaciones?grupo=value", (req, res, next) => {
 
 //agrega una nueva evaluacion
 app.post("/evaluaciones", jsonParser, (req, res, next) => {
-	let name = req.body.name;
+	let name = req.body.nombre;
 	let grade = req.body.grade;
-	let group = req.body.group;
+	let group = req.body.grupo;
 
 	if(!name || !grade || !group){
 		res.statusMessage = "uno de los campos esta vacio";
@@ -259,10 +254,10 @@ app.post("/evaluaciones", jsonParser, (req, res, next) => {
 
 	let id = uuidv4();
 	let returnedEvaluation = {
-		ID : id,
-		Name : name,
-		Grade : grade,
-		Group : group
+		id : id,
+		nombre : name,
+		grade : grade,
+		grupo : group
 	};
 
     EvaluationList.createEvaluation(returnedEvaluation)
@@ -274,7 +269,7 @@ app.post("/evaluaciones", jsonParser, (req, res, next) => {
 
 //borra una evalucion
 app.delete("/evaluaciones/:id", (req, res, next) => {
-	let id = req.params.ID;    
+	let id = req.params.id;    
     EvaluationList.deleteEvaluation(id)
         .then(deleted => {
             if(deleted) {
@@ -311,7 +306,7 @@ app.get("/materiales", (req, res, next) => {
 
 //despliega evaluaciones filtradas por materia
 app.get("/materiales?materia=value", (req, res, next) => {
-	let subject = req.body.subject;
+	let subject = req.body.type;
 	if(!subject){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
@@ -359,8 +354,8 @@ app.post("/materiales", jsonParser, (req, res, next) => {
         UserID : userID
 	};
 
-    PostList.post(returnedMaterial)
-            .then(event => 
+    MaterialList.createMaterial(returnedMaterial)
+            .then(material => 
 				res.statusMessage = "evento añadido con exito",
             	res.status(201).json(returnedMaterial))
             .catch(err => { throw Error(err); })
@@ -405,10 +400,9 @@ app.get("/contacto", (req, res, next) => {
 
 //edita la info de contact
 app.put("/contacto", jsonParser, (req, res, next) => {
-	let title = req.body.Title;
-	let phone = req.body.Phone;
-	let email = req.body.Email;
-	if(!title || !phone || !email){
+	let title = req.body.title;
+	let phone = req.body.tel;
+	if(!title || !phone){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
 			message : "uno de los campos esta vacio",
@@ -420,10 +414,9 @@ app.put("/contacto", jsonParser, (req, res, next) => {
         .then(newContact => {
             if(!newContact) {
 				let newContact = {
-					Title : title,
-					Phone : phone,
-					Email : email
-				};
+					title : title,
+					tel : phone				
+                };
                 ContactList.createContact(newContact)
             	.then(event => 
 					res.statusMessage = "evaluacion añadida con exito",
@@ -506,8 +499,8 @@ app.post("/usuario", jsonParser, (req, res, next) => {
 		Principal : principal
 	};
 
-    PostList.post(returnedUser)
-            .then(event => 
+    UserList.createUser(returnedUser)
+            .then(User => 
 				res.statusMessage = "evento añadido con exito",
             	res.status(201).json(returnedUser))
             .catch(err => { throw Error(err); })

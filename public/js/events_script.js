@@ -1,4 +1,4 @@
-urlBase = "";
+urlBase = "/eventos";
 cardList = [];
 
 function loadPosts() {
@@ -71,7 +71,6 @@ $("#newPostButton").click(function(){
 $("#list").on('click', ".buttonClose", function(event){
   event.preventDefault();
   let id = $(this).data("id");
-  console.log(id);
   if(!id){
     alert("No id provided");
     return;
@@ -95,8 +94,9 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-$("#updateButton").click(function(){
+$("#editPostButton").click(function(){
   let idU = $(this).data("id");
+  console.log(idU);
   if(!idU){
     alert("No id provided");
     return;

@@ -1,4 +1,4 @@
-urlBase = "";
+urlBase = "/convocatorias";
 cardList = [];
 
 function loadPosts() {
@@ -52,7 +52,7 @@ function loadPosts() {
         searchString: searchString
     };
     $.ajax({
-        url: urlBase,
+        url: urlBase + "?nombre=value",
         method: "GET",
         datatype: "json",
         data: JSON.stringify(obj),
