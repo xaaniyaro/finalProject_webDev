@@ -338,7 +338,8 @@ app.post("/materiales", jsonParser, (req, res, next) => {
 	let title = req.body.Title;
 	let description = req.body.Description;
 	let subject = req.body.Subject;
-	let link = req.body.link;
+	let link = req.body.Link;
+    let userID = req.body.UserID;
 
 	if(!title || !description || !imageUrl || !date){
 		res.statusMessage = "uno de los campos esta vacio";
@@ -354,7 +355,8 @@ app.post("/materiales", jsonParser, (req, res, next) => {
 		Title : title,
 		Description : description,
 		Subject : subject,
-		Link : link
+		Link : link,
+        UserID : userID
 	};
 
     PostList.post(returnedMaterial)

@@ -105,6 +105,7 @@ let materialsSchema = mongoose.Schema({
     Description : {type : String, require : true},
     Subject : {type : String, require : true},
     Link : {type : String, require : true}
+    UserID : {type : String, require : true}
 });
 
 let materials = mongoose.model('Materiales', materialsSchema);
