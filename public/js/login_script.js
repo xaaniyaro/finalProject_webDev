@@ -1,4 +1,3 @@
-
 $("#registrarButton").click(function(){
   let email = $("#inputEmail").val();
   let pass = $("#inputPass").val();
@@ -20,7 +19,65 @@ $("#registrarButton").click(function(){
       method: "POST",
       contentType: "application/json",
       success: function(){
-      
+          $(location).attr('href', './events.html');
+          cleanInputs();
+      },
+      error: function(err){
+      alert(err.statusText);
+      }
+  });
+});
+
+function checkPassword(str){
+    // at least one number, one lowercase and one uppercase letter
+    // at least six characters
+    var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    return re.test(str);
+  }
+
+$("#iniciarButton").click(function(){
+
+  let email = $("#inputEmailI").val();
+  let pass = $("#inputPassI").val();
+
+  if(!email && !pass){
+    alert("No hay información de inicio de sesión");
+    return;
+  }
+
+  if($("#inputEmailI").is(':invalid')){ 
+    alert("El correo no es correcto");
+    return;
+  }
+
+  if(!email){
+    alert("Falta correo");
+    return;
+  }
+
+  if(!checkPassword($("#inputPassI").val())){
+    alert("La contraseña debe tener al menos una mayúscula, al menos una minúscula, al menos un número y ser de 6 caracteres de tamaño.");
+    return;
+  }
+
+  if(!pass){
+    alert("Falta contraseña");
+    return;
+  }
+
+  let obj = {
+      email : email,
+      pass : pass,
+  };
+
+  $.ajax({
+      url: urlBase,
+      data: JSON.stringify(obj),
+      method: "POST",
+      contentType: "application/json",
+      success: function(){
+        $(location).attr('href', './events.html');
+        cleanInputs();
       },
       error: function(err){
       alert(err.statusText);
@@ -64,5 +121,10 @@ $(window, document, undefined).ready(function() {
 
 });
 
+function cleanInputs(){
+  $("input[type=email]").val("");
+  $("input[type=password]").val("");
+}
 
+cleanInputs();
 

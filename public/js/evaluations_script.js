@@ -120,7 +120,7 @@ $(".dropdown").on('click', ".dropdown-item", function(event){
 });
 
 function cleanInputs(){
-$("input[type=text]").val("");
+  $("input[type=text]").val("");
 }
 
 loadPosts();
