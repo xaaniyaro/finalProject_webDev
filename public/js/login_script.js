@@ -1,7 +1,23 @@
 $("#registrarButton").click(function(){
+  let name = $("#inputNombre").val();
   let email = $("#inputEmail").val();
   let pass = $("#inputPass").val();
   let passC = $("#inputPassC").val();
+
+  if(!email){
+    alert("No hay email");
+    return;
+  }
+
+  if(!name){
+    alert("No hay nombre");
+    return;
+  }
+
+  if(!pass || passC){
+    alert("No hay contraseña");
+    return;
+  }
 
   if(pass != passC){
     $("#alertPass").show();
@@ -9,6 +25,7 @@ $("#registrarButton").click(function(){
   }
 
   let obj = {
+      name: name,
       email : email,
       pass : pass,
   };
@@ -122,6 +139,7 @@ $(window, document, undefined).ready(function() {
 });
 
 function cleanInputs(){
+  $("input[type=text").val("");
   $("input[type=email]").val("");
   $("input[type=password]").val("");
 }

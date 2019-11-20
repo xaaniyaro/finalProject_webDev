@@ -52,7 +52,25 @@ $("#newPostButton").click(function(){
     img : img,
     eventDate : date
   };
+  
+  let title = $(`<h4 class="card-title"> ${title}</h4><hr>`);
+  let description = $(`<p class="card-text"> ${description}</p>`);
+  let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${date}</li>`);
+  let img = $(`<img class="card-img-top" src="${img}" alt="Card image cap"></img>`);
+  let cardFooterButtons = 
+  $(`<li class="list-inline-item pr-2">
+  <button type="button" class="buttonEdit" id="editPostButton" data-id="123" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
+  </li>
+  <li class="list-inline-item pr-2">
+  </li>  `);
+  let cardImg = $(`<div class="view overlay">`).append(img);
+  let cardBody = $(`<div class="card-body">`).append(title,description);
+  let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+  <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
+  let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
+  $("#list").append(card);
 
+  /*
   $.ajax({
     url: urlBase,
     data: JSON.stringify(obj),
@@ -65,7 +83,7 @@ $("#newPostButton").click(function(){
     error: function(err){
       alert(err.statusText);
     }
-  });
+  });*/
 });
 
 $("#list").on('click', ".buttonClose", function(event){
@@ -95,7 +113,8 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-$("#updateButton").click(function(){
+$("#list").on('click', ".buttonEdit", function(event){
+  event.preventDefault();
   let idU = $(this).data("id");
   if(!idU){
     alert("No id provided");
