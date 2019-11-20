@@ -1,5 +1,6 @@
 urlBase = "/eventos";
 cardList = [];
+currentEditID = "";
 
 function loadPosts() {
   $(".dashboard > .card").remove();
@@ -22,7 +23,7 @@ function loadPosts() {
       let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
       let cardFooterButtons = 
       $(`<li class="list-inline-item pr-2">
-      <button type="button" class="buttonEdit" id="editPostButton" data-id="${post.id}" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
+      <button type="button" class="buttonEdit" data-id="${post.id}" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
       </li>
       <li class="list-inline-item pr-2">
       <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
@@ -66,6 +67,7 @@ $("#newPostButton").click(function(){
       alert(err.statusText);
     }
   });
+
 });
 
 $("#list").on('click', ".buttonClose", function(event){
@@ -94,6 +96,7 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
+<<<<<<< HEAD
 $("#list").on('click', ".buttonEdit", function(event){
   event.preventDefault();
   let idU = $(this).data("id");
@@ -103,6 +106,9 @@ $("#list").on('click', ".buttonEdit", function(event){
     return;
   }
 
+=======
+$("#editPostButton").click(function(){
+>>>>>>> ee6f532668171484e4f3953c2f1bc0fe3ed84ef7
   let title = $("#inputTituloE").val();
   let description = $("#inputDescripcionE").val();
   let img = $("#inputImgE").val();
@@ -112,7 +118,7 @@ $("#list").on('click', ".buttonEdit", function(event){
   let year = dateRaw.getFullYear();
   let date = day + '/' + month + '/' + year;
   let body = $.extend({}, {
-      id: idU,
+      id: currentEditID,
       title: title != "" ? title : undefined,
       description: description != "" ? description : undefined,
       img: img != "" ? img : undefined,
@@ -120,7 +126,7 @@ $("#list").on('click', ".buttonEdit", function(event){
   });
 
   $.ajax({
-      url: urlBase + '/' + idU,
+      url: urlBase + '/' + currentEditID,
       method: "PUT",
       data: JSON.stringify(body),
       contentType: "application/json",
@@ -133,6 +139,11 @@ $("#list").on('click', ".buttonEdit", function(event){
           alert(err.statusText);
       }
   });
+});
+
+$("#list").on('click', ".buttonEdit", function(event){
+  event.preventDefault();
+  currentEditID = $(this).data("id");
 });
 
 function cleanInputs(){

@@ -41,7 +41,7 @@ function loadPosts() {
       loadPosts();
   });
   
-  $("#searchButton").click(function(){
+$("#searchButton").click(function(){
     let searchString = $("#searchInput").val();
     if(!searchString){
         alert("No hay nada que buscar");

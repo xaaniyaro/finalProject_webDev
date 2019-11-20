@@ -57,3 +57,12 @@ i {
 #todoButton{
     display: none;
 }
+
+.teacherName{
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.card-title{
+    margin-bottom: 5px;
+}

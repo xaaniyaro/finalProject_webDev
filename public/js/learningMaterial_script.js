@@ -2,7 +2,7 @@ urlBase = "/materiales";
 cardList = [];
 
 function loadPosts() {
-  $(".dashboard > .card").remove();
+  //$(".dashboard > .card").remove();
   $.ajax({
     url: urlBase,
     method: "GET",
@@ -17,12 +17,13 @@ function loadPosts() {
   }).done(function() {
     cardList.forEach(post =>{
       let title = $(`<h5 class="card-title">${post.title}</h5>`);
+      let name = $(`<p class="card-text teacherName">${post.name}</p>`);
       let description = $(`<p class="card-text">${post.description}</p>`);
       let deleteButton =$(`<div class="buttonContainer">
       <button type="button" class="btn btn-danger" data-id="${post.id}">Borrar</button>
     </div>`);
       let badge = $(`<span class="badge badge-info">${post.tipo}</span>`);
-      let cardBody = $(`<div class="card-body">`).append(deleteButton,title,description,badge);
+      let cardBody = $(`<div class="card-body">`).append(deleteButton,title,name,description,badge);
       let card = $(`<div class="card">`).append(cardBody);
       $("#list").append(card);
     })
@@ -32,9 +33,11 @@ function loadPosts() {
 $("#newPostButton").click(function(){
     let title = $("#inputTitulo").val();
     let description = $("#inputDescripcion").val();
+    //let name = variable global para sacar el nombre del usuario
     let tipo = $("#inputTipo").val();
     let obj = {
         title : title,
+        //name: name,
         description : description,
         tipo: tipo
     };
