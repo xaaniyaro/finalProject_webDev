@@ -1,3 +1,3 @@
-let userName = "";
-let userID = "";
-let admin = true;
+var userName = "";
+var userID = "";
+var admin = false;
