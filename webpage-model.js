@@ -100,11 +100,12 @@ let EvaluationList = {
 
 ////////////// MATERIALES //////////////
 let materialsSchema = mongoose.Schema({
-    ID : {type : String, require : true},
-    Title : {type : String, require : true},
-    Description : {type : String, require : true},
-    Subject : {type : String, require : true},
-    UserID : {type : String, require : true}
+    id : {type : String, require : true},
+    title : {type : String, require : true},
+    description : {type : String, require : true},
+    tipo : {type : String, require : true},
+    userID : {type : String, require : true},
+    name : {type : String, require : true}
 });
 
 let Materials = mongoose.model('Materiales', materialsSchema);
@@ -116,7 +117,7 @@ let MaterialList = {
                     .catch(err => { throw Error(err) });
     },
     getMaterialsBySubject: async function(Subject) {
-        return Materials.find({Subject : Subject})
+        return Materials.find({tipo : Subject})
                     .then(Materials => Materials)
                     .catch(err => { throw Error(err) });
     },
@@ -126,7 +127,7 @@ let MaterialList = {
                     .catch(err => { throw Error(err) });
     },
     deleteMaterial: async function(ID) {
-        return Materials.findOneAndDelete({ID: ID})
+        return Materials.findOneAndDelete({id: ID})
                     .then(deleted => deleted)
                     .catch(err => { throw Error(err) });
     }

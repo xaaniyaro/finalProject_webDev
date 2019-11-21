@@ -96,7 +96,7 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 $("#list").on('click', ".buttonEdit", function(event){
   event.preventDefault();
   let idU = $(this).data("id");
@@ -105,10 +105,11 @@ $("#list").on('click', ".buttonEdit", function(event){
     alert("No id provided");
     return;
   }
+});
 
-=======
+/*=======*/
 $("#editPostButton").click(function(){
->>>>>>> ee6f532668171484e4f3953c2f1bc0fe3ed84ef7
+/*>>>>>>> ee6f532668171484e4f3953c2f1bc0fe3ed84ef7*/
   let title = $("#inputTituloE").val();
   let description = $("#inputDescripcionE").val();
   let img = $("#inputImgE").val();
@@ -150,7 +151,6 @@ function cleanInputs(){
   $("textarea").val("");
   $("input[type=text]").val("");
   $('input[type=date]').val("");
-
 }
 
 loadPosts();

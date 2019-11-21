@@ -1,8 +1,10 @@
 urlBase = "/materiales";
 cardList = [];
+let name = "Juan Perez";
+let userID = "1234";
 
 function loadPosts() {
-  //$(".dashboard > .card").remove();
+  $(".dashboard > .card").remove();
   $.ajax({
     url: urlBase,
     method: "GET",
@@ -33,13 +35,13 @@ function loadPosts() {
 $("#newPostButton").click(function(){
     let title = $("#inputTitulo").val();
     let description = $("#inputDescripcion").val();
-    //let name = variable global para sacar el nombre del usuario
     let tipo = $("#inputTipo").val();
     let obj = {
         title : title,
-        //name: name,
+        name: name,
         description : description,
-        tipo: tipo
+        tipo: tipo,
+        userID : userID
     };
 
     $.ajax({
@@ -75,9 +77,9 @@ $("#list").on('click', ".dropdown-item", function(event){
     };
     $(".dashboard > .card").remove();
     $.ajax({
-        url: urlBase,
-        method: "GET",
-        datatype: "json",
+        url: urlBase + "/materia",
+        method: "POST",
+        contentType: "application/json",
         data: JSON.stringify(obj),
         success: function(response){
           cardList = [];
@@ -89,12 +91,13 @@ $("#list").on('click', ".dropdown-item", function(event){
       }).done(function() {
         cardList.forEach(post =>{
             let title = $(`<h5 class="card-title">${post.title}</h5>`);
+            let name = $(`<p class="card-text teacherName">${post.name}</p>`);
             let description = $(`<p class="card-text">${post.description}</p>`);
             let deleteButton =$(`<div class="buttonContainer">
             <button type="button" class="btn btn-danger" data-id="${post.id}">Borrar</button>
           </div>`);
             let badge = $(`<span class="badge badge-info">${post.tipo}</span>`);
-            let cardBody = $(`<div class="card-body">`).append(deleteButton,title,description,badge);
+            let cardBody = $(`<div class="card-body">`).append(deleteButton,title,name,description,badge);
             let card = $(`<div class="card">`).append(cardBody);
             $("#list").append(card);
         })
@@ -102,10 +105,9 @@ $("#list").on('click', ".dropdown-item", function(event){
 });
 
 
-$("#list").on('click', ".btn .btn-danger", function(event){
+$("#list").on('click', ".btn-danger", function(event){
     event.preventDefault();
     let id = $(this).data("id");
-    console.log(id);
     if(!id){
       alert("No id provided");
       return;

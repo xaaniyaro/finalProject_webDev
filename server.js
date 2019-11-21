@@ -306,7 +306,7 @@ app.get("/materiales", (req, res, next) => {
 });
 
 //despliega evaluaciones filtradas por materia
-app.get("/materiales?materia=value", (req, res, next) => {
+app.post("/materiales/materia", jsonParser, (req, res) => {
 	let subject = req.body.type;
 	if(!subject){
 		res.statusMessage = "uno de los campos esta vacio";
@@ -331,13 +331,13 @@ app.get("/materiales?materia=value", (req, res, next) => {
 
 //agrega un nuevo material
 app.post("/materiales", jsonParser, (req, res, next) => {
-	let title = req.body.Title;
-	let description = req.body.Description;
-	let subject = req.body.Subject;
-	let link = req.body.Link;
-    let userID = req.body.UserID;
+	let title = req.body.title;
+	let description = req.body.description;
+	let subject = req.body.tipo;
+    let userID = req.body.userID;
+    let userName =  req.body.name;
 
-	if(!title || !description || !imageUrl || !date){
+	if(!title || !description || !subject || !userID || !userName){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
 			message : "uno de los campos esta vacio",
@@ -347,24 +347,24 @@ app.post("/materiales", jsonParser, (req, res, next) => {
 
 	let id = uuidv4();
 	let returnedMaterial = {
-		ID : id,
-		Title : title,
-		Description : description,
-		Subject : subject,
-		Link : link,
-        UserID : userID
+		id : id,
+		title : title,
+		description : description,
+		tipo : subject,
+		userID : userID,
+        name : userName
 	};
 
     MaterialList.createMaterial(returnedMaterial)
             .then(material => 
-				res.statusMessage = "evento añadido con exito",
+				res.statusMessage = "material añadido con exito",
             	res.status(201).json(returnedMaterial))
             .catch(err => { throw Error(err); })
 });
 
 //borra un material
 app.delete("/materiales/:id", (req, res, next) => {
-	let id = req.params.ID;    
+	let id = req.params.id;    
     MaterialList.deleteMaterial(id)
         .then(deleted => {
             if(deleted) {
