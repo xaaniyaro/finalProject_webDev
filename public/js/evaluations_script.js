@@ -1,6 +1,7 @@
 urlBase = "/evaluaciones";
 tableList = [];
 type = "";
+group = "";
 /*function loadPosts() {
   $("#table > tr").remove();
   $.ajax({
@@ -48,26 +49,38 @@ function loadPostsByGroup(){
         console.log(error);
       }
     }).done(function() {
-      tableList.forEach(post =>{
-        let nombre = $(`<td>${post.nombre}</td>`);
-        let grupo = $(`<td>${post.grupo}</td>`);
-        let grade = $(`<td>${post.grade}</td>`);
-        let button = $(`<td><button type="button" class="btn btn-danger" data-id="${post.id}">Borrar</button></td>`);
-        let reg = $(`<tr>`).append(nombre,grupo,grade,button);
-        $("#table").append(reg);
-      })
+      if(admin){
+        tableList.forEach(post =>{
+          let nombre = $(`<td>${post.nombre}</td>`);
+          let grupo = $(`<td>${post.grupo}</td>`);
+          let grade = $(`<td>${post.grade}</td>`);
+          let button = $(`<td><button type="button" class="btn btn-danger" data-id="${post.id}">Borrar</button></td>`);
+          let reg = $(`<tr>`).append(nombre,grupo,grade,button);
+          $("#table").append(reg);
+        })
+      }
+      else{
+        tableList.forEach(post =>{
+          let nombre = $(`<td>${post.nombre}</td>`);
+          let grupo = $(`<td>${post.grupo}</td>`);
+          let grade = $(`<td>${post.grade}</td>`);
+          let reg = $(`<tr>`).append(nombre,grupo,grade);
+          $("#table").append(reg);
+        })
+      }
     });
 }
 
 $("#newPostButton").click(function(){
     let nombre = $("#inputNombre").val();
-    let grupo = $("#inputGrupo").val();
+    let grupo = group;
     let grade = $("#inputPromedio").val();
     let obj = {
         nombre : nombre,
         grupo : grupo,
         grade: grade
     };
+    console.log(obj.grupo);
 
     $.ajax({
         url: urlBase,
@@ -110,10 +123,17 @@ $("#table").on('click', ".btn-danger", function(event){
     });
 });
 
-$(".dropdown").on('click', ".dropdown-item", function(event){
+$("#dropMenu").on('click', ".dropdown-item", function(event){
     event.preventDefault();
     type = $(this).data("type");
+    $("#dropdownMenu").html(type);
     loadPostsByGroup();
+});
+
+$("#dropInput").on('click', ".dropdown-item", function(event){
+  event.preventDefault();
+  group =$(this).data("type");
+  $("#dropdownTitle").html(group);
 });
 
 function cleanInputs(){

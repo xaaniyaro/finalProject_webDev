@@ -54,8 +54,8 @@
   <main>
         <section class= "dashboard">
             <div class="dropContainer">
-                <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                <div class="dropdown" id="dropMenu">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             Grupo
                         </button>
@@ -66,7 +66,6 @@
                             <button class="dropdown-item" data-type="4D" type="button">4D</button>
                             <button class="dropdown-item" data-type="5E" type="button">5E</button>
                             <button class="dropdown-item" data-type="6F" type="button">6F</button>
-                            <button class="dropdown-item" id="todoButton" type="button">Todo</button>
                         </div>
                         </div>
             </div>
@@ -120,13 +119,27 @@
                         <input type="text" id="inputNombre" class="form-control">
                         <label for="inputNombre">Nombre</label>
                       </div>
+                      
+                        <div class="dropContainer">
+                          <div class="dropdown" id="dropInput">
+                                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownTitle" data-toggle="dropdown"
+                                      aria-haspopup="true" aria-expanded="false">
+                                      Grupo
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                      <button class="dropdown-item dropInput" data-type="1A" type="button">1A</button>
+                                      <button class="dropdown-item dropInput" data-type="2B" type="button">2B</button>
+                                      <button class="dropdown-item dropInput" data-type="3C" type="button">3C</button>
+                                      <button class="dropdown-item dropInput" data-type="4D" type="button">4D</button>
+                                      <button class="dropdown-item dropInput" data-type="5E" type="button">5E</button>
+                                      <button class="dropdown-item dropInput" data-type="6F" type="button">6F</button>
+                                  </div>
+                                  </div>
+                      </div>
+                          
                       <div class="md-form">
-                            <input type="text" id="inputGrupo" class="form-control">
-                            <label for="Grupo">Grupo</label>
-                            </div>   
-                      <div class="md-form">
-                            <input type="text" id="inputPromedio" class="form-control">
-                            <label for="inputPromedio">Promedio</label>
+                            <input type="number" id="inputPromedio" class="form-control validate" min="10" max="100">
+                            <label for="inputPromedio" data-error="checar" data-success="">Promedio</label>
                           </div>       
             </form>
       </div>
@@ -146,6 +159,7 @@
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- SCRIPTS -->
+  <script src="./js/globalVariables.js"></script>
   <script type="text/javascript" src="js/evaluations_script.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
