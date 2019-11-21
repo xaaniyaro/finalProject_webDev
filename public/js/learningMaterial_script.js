@@ -1,6 +1,7 @@
 urlBase = "/materiales";
 cardList = [];
-asig = "";
+let name = "Juan Perez";
+let userID = "1234";
 
 function loadPosts() {
   $(".dashboard > .card").remove();
@@ -16,40 +17,25 @@ function loadPosts() {
       console.log(error);
     }
   }).done(function() {
-    if(admin){
-      cardList.forEach(post =>{
-        let title = $(`<h5 class="card-title">${post.title}</h5>`);
-        let name = $(`<p class="card-text teacherName">${post.name}</p>`);
-        let description = $(`<p class="card-text">${post.description}</p>`);
-        let deleteButton =$(`<div class="buttonContainer">
-        <button type="button" class="btn btn-danger"
-        data-user="${post.userID}" data-id="${post.id}">Borrar</button>
-      </div>`);
-        let badge = $(`<span class="badge badge-info">${post.tipo}</span>`);
-        let cardBody = $(`<div class="card-body">`).append(deleteButton,title,name,description,badge);
-        let card = $(`<div class="card">`).append(cardBody);
-        $("#list").append(card);
-      })
-    }
-    else{
-      cardList.forEach(post =>{
-        let title = $(`<h5 class="card-title">${post.title}</h5>`);
-        let name = $(`<p class="card-text teacherName">${post.name}</p>`);
-        let description = $(`<p class="card-text">${post.description}</p>`);
-        let badge = $(`<span class="badge badge-info">${post.tipo}</span>`);
-        let cardBody = $(`<div class="card-body">`).append(title,name,description,badge);
-        let card = $(`<div class="card">`).append(cardBody);
-        $("#list").append(card);
-      })
-    }
+    cardList.forEach(post =>{
+      let title = $(`<h5 class="card-title">${post.title}</h5>`);
+      let name = $(`<p class="card-text teacherName">${post.name}</p>`);
+      let description = $(`<p class="card-text">${post.description}</p>`);
+      let deleteButton =$(`<div class="buttonContainer">
+      <button type="button" class="btn btn-danger" data-id="${post.id}">Borrar</button>
+    </div>`);
+      let badge = $(`<span class="badge badge-info">${post.tipo}</span>`);
+      let cardBody = $(`<div class="card-body">`).append(deleteButton,title,name,description,badge);
+      let card = $(`<div class="card">`).append(cardBody);
+      $("#list").append(card);
+    })
   });
 }
 
 $("#newPostButton").click(function(){
     let title = $("#inputTitulo").val();
     let description = $("#inputDescripcion").val();
-    let tipo = asig;
-
+    let tipo = $("#inputTipo").val();
     let obj = {
         title : title,
         name: name,
@@ -66,7 +52,6 @@ $("#newPostButton").click(function(){
         success: function(){
         loadPosts();
         cleanInputs();
-        $("#dropdownTitle").html("Asignatura");
         },
         error: function(err){
         alert(err.statusText);
@@ -123,19 +108,11 @@ $("#list").on('click', ".dropdown-item", function(event){
 $("#list").on('click', ".btn-danger", function(event){
     event.preventDefault();
     let id = $(this).data("id");
-    let currentUserID = $(this).data("userID");
     if(!id){
       alert("No id provided");
       return;
     }
-
-    if(!admin){
-      if(userID != currentUserID){
-        alert("Para borrar este post debe ser suyo");
-        return;
-      }
-    }
-    
+  
     let body = {
       id : id
     }
@@ -153,12 +130,6 @@ $("#list").on('click', ".btn-danger", function(event){
       }
     });
   });
-
-$("#dropInput").on('click', ".dropdown-item", function(event){
-  event.preventDefault();
-  asig =$(this).data("type");
-  $("#dropdownTitle").html(asig);
-});
   
 function cleanInputs(){
     $("textarea").val("");

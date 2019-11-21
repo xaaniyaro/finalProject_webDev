@@ -62,7 +62,7 @@
                           <button class="dropdown-item" data-type="Matematicas">Matemáticas</button>
                           <button class="dropdown-item" data-type="Lecturas" >Lecturas</button>
                           <button class="dropdown-item" data-type="Espanol" >Español</button>
-                          <button class="dropdown-item" id="todoButton" >Todo</button>
+                          <button class="dropdownTodo" id="todoButton">Todo</button>
                         </div>
                       </div>
         <div class="card">
@@ -119,25 +119,14 @@
                           <label for="inputDescripcion">Descripción</label>
                         </div>     
                         <div class="md-form">
-                          <div class="dropContainer">
-                            <div class="dropdown" id="dropInput">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownTitle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        Asignatura
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-                                        <button class="dropdown-item" data-type="Matemáticas">Matemáticas</button>
-                                        <button class="dropdown-item" data-type="Lecturas" >Lecturas</button>
-                                        <button class="dropdown-item" data-type="Español" >Español</button>
-                                    </div>
-                                    </div>
-                        </div>
+                                <input type="text" id="inputTipo" class="form-control">
+                                <label for="inputTipo">Asignatura</label>
                               </div>           
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" id="newPostButton" data-dismiss="modal">Agregar</button>
+        <button type="button" class="btn btn-primary" id="newPostButton">Agregar</button>
       </div>
     </div>
   </div>
@@ -151,7 +140,6 @@
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- SCRIPTS -->
-  <script src="./js/globalVariables.js"></script>
   <script type="text/javascript" src="js/learningMaterial_script.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
