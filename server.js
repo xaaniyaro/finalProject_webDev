@@ -3,6 +3,7 @@ let bodyparser = require("body-parser");
 let morgan = require("morgan");
 let uuidv4 = require('uuid/v4');
 let mongoose = require('mongoose');
+let bcrypt = require('bcrypt-nodejs');
 
 let {UserList} = require('./webpage-model');
 let {EventList} = require('./webpage-model');
@@ -12,6 +13,7 @@ let {MaterialList} = require('./webpage-model');
 let {ContactList} = require('./webpage-model');
 
 const {DATABASE_URL, PORT} = require('./config');
+let BCRYPT_SALT_ROUNDS = 12;
 
 let app = express();
 let jsonParser = bodyparser.json();
@@ -434,9 +436,9 @@ app.put("/contacto", jsonParser, (req, res, next) => {
 
 ///////////// USUARIOS //////////////////
 //obten un usario con el mail y valida la contrasena
-app.get("/usuario?mail=value", (req, res, next) => {
-	let mail = req.body.mail;
-	let password = req.params.password;
+app.post("/usuario/login", jsonParser, (req, res, next) => {
+	let mail = req.body.email;
+	let password = req.body.pass;
 	if(!mail || !password){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
@@ -444,10 +446,11 @@ app.get("/usuario?mail=value", (req, res, next) => {
 			status : 406
 		});
 	}
+    //UserList.deleteAll();
 	UserList.getUserWithEmail(mail)
         .then(userFound => {
         	if(userFound){
-        		if(userFound.password == password){
+        		if(bcrypt.compareSync(password, userFound.pass)){
 		            res.statusMessage = "mail y contrasena correctos";
 					return res.status(200).json(userFound);
 				}
@@ -478,33 +481,44 @@ app.get("/usuario?mail=value", (req, res, next) => {
 
 //agrega un usuario nuevo
 app.post("/usuario", jsonParser, (req, res, next) => {
-	let name = req.body.Name;
-	let email = req.body.Email;
-	let password = req.body.Password;
-	let principal = req.body.Principal;
+	let name = req.body.name;
+	let email = req.body.email;
+	let password = req.body.pass;
+	let principal = false;
 
-	if(!name || !email || !password || !principal){
+	if(!name || !email || !password){
 		res.statusMessage = "uno de los campos esta vacio";
 		return res.status(406).json({
 			message : "uno de los campos esta vacio",
 			status : 406
 		});
 	}
-
-	let id = uuidv4();
-	let returnedUser = {
-		ID : id,
-		Name : name,
-		Email : email,
-		Password : password,
-		Principal : principal
-	};
-
-    UserList.createUser(returnedUser)
-            .then(User => 
-				res.statusMessage = "evento añadido con exito",
-            	res.status(201).json(returnedUser))
-            .catch(err => { throw Error(err); })
+    UserList.emailExists(email).then(function(valid) {
+        if (!valid) {
+            let hashedPassword = bcrypt.hashSync(password);
+            password = hashedPassword;
+            let id = uuidv4();
+            let returnedUser = {
+                id : id,
+                name : name,
+                email : email,
+                pass : password,
+                principal : principal
+            };
+            UserList.createUser(returnedUser)
+                    .then(User => 
+                        res.statusMessage = "usuario añadido con exito",
+                        res.status(201).json(returnedUser))
+                    .catch(err => { throw Error(err); })
+          } 
+          else {
+            res.statusMessage = "el correo ya existe";
+            return res.status(406).json({
+                message : res.statusMessage,
+                status : 406
+            });
+          }
+    });
 });
 
 

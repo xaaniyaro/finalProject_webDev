@@ -161,24 +161,34 @@ let ContactList = {
 
 ////////////// USUARIOS /////////////////
 let usersSchema = mongoose.Schema({
-    ID : {type : String, require : true},
-    Name : {type : String, require : true},
-    Email : {type : String, require : true},
-    Password : {type : String, require : true},
-    Principal : {type : Boolean, require : true}
+    id : {type : String, require : true},
+    name : {type : String, require : true},
+    email : {type : String, require : true},
+    pass : {type : String, require : true},
+    principal : {type : Boolean, require : true}
 });
 
 let Users = mongoose.model('Usuarios', usersSchema);
 
 let UserList = {
     getUserWithEmail: async function(mail) {
-        return Users.findOne({Email: mail})
+        return Users.findOne({email: mail})
                     .then(Users => Users)
                     .catch(err => { throw Error(err) });
+    },
+    emailExists: async function(mail) {
+        return Users.findOne({email: mail})
+                    .then(function(result){
+                    return result !== null;});
     },
     createUser: async function(User) {
         return Users.create(User)
                     .then(newUser => newUser)
+                    .catch(err => { throw Error(err) });
+    },
+    deleteAll: async function() {
+        return Users.remove()
+                    .then(User => User)
                     .catch(err => { throw Error(err) });
     }
 };

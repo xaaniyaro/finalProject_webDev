@@ -1,3 +1,5 @@
+let urlBase = "/usuario"
+
 $("#registrarButton").click(function(){
   let name = $("#inputNombre").val();
   let email = $("#inputEmail").val();
@@ -14,7 +16,7 @@ $("#registrarButton").click(function(){
     return;
   }
 
-  if(!pass || passC){
+  if(!pass || !passC){
     alert("No hay contraseña");
     return;
   }
@@ -72,11 +74,6 @@ $("#iniciarButton").click(function(){
     return;
   }
 
-  if(!checkPassword($("#inputPassI").val())){
-    alert("La contraseña debe tener al menos una mayúscula, al menos una minúscula, al menos un número y ser de 6 caracteres de tamaño.");
-    return;
-  }
-
   if(!pass){
     alert("Falta contraseña");
     return;
@@ -88,7 +85,7 @@ $("#iniciarButton").click(function(){
   };
 
   $.ajax({
-      url: urlBase,
+      url: urlBase + "/login",
       data: JSON.stringify(obj),
       method: "POST",
       contentType: "application/json",
