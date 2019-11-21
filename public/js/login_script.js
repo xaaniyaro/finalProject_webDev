@@ -38,6 +38,9 @@ $("#registrarButton").click(function(){
       success: function(){
           $(location).attr('href', './events.html');
           cleanInputs();
+          userName = response.name;
+          userID = response.id;
+          admin = response.principal;
       },
       error: function(err){
       alert(err.statusText);
@@ -92,9 +95,12 @@ $("#iniciarButton").click(function(){
       data: JSON.stringify(obj),
       method: "POST",
       contentType: "application/json",
-      success: function(){
+      success: function(response){
         $(location).attr('href', './events.html');
         cleanInputs();
+        userName = response.name;
+        userID = response.id;
+        admin = response.principal;
       },
       error: function(err){
       alert(err.statusText);

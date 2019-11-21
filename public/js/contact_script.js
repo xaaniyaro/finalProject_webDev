@@ -10,6 +10,12 @@ function loadInfo() {
       success: function(response){
         cardList = [];
         cardList.push(response);
+        if(admin){
+          $("#addButton").show();
+        }
+        else{
+          $("#addButton").hide();
+        }
       },
       error: function(error){
         console.log(error);

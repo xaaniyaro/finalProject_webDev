@@ -16,23 +16,41 @@ function loadPosts() {
         console.log(error);
       }
     }).done(function() {
-      cardList.forEach(post =>{
-        let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
-        let description = $(`<p class="card-text"> ${post.description}</p>`);
-        let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
-        let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
-        let link = $(`<a href="${post.link}">Más detalles</a>`)
-        let cardFooterButtons = 
-        $(`<li class="list-inline-item pr-2">
-        <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
-        </li>  `);
-        let cardImg = $(`<div class="view overlay">`).append(img);
-        let cardBody = $(`<div class="card-body">`).append(title,description,link);
-        let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
-        <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
-        let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
-        $("#list").append(card);
-      })
+      if(admin){
+        cardList.forEach(post =>{
+          let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
+          let description = $(`<p class="card-text"> ${post.description}</p>`);
+          let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
+          let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
+          let link = $(`<a href="${post.link}">Más detalles</a>`)
+          let cardFooterButtons = 
+          $(`<li class="list-inline-item pr-2">
+          <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
+          </li>  `);
+          let cardImg = $(`<div class="view overlay">`).append(img);
+          let cardBody = $(`<div class="card-body">`).append(title,description,link);
+          let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+          <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
+          let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
+          $("#list").append(card);
+        })
+      }
+      else{
+        cardList.forEach(post =>{
+          let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
+          let description = $(`<p class="card-text"> ${post.description}</p>`);
+          let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
+          let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
+          let link = $(`<a href="${post.link}">Más detalles</a>`)
+          let cardImg = $(`<div class="view overlay">`).append(img);
+          let cardBody = $(`<div class="card-body">`).append(title,description,link);
+          let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+          <ul class="list-unstyled list-inline font-small">`).append(date);
+          let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
+          $("#list").append(card);
+        })
+      }
+      
     });
   }
 

@@ -1,6 +1,10 @@
 urlBase = "/eventos";
 cardList = [];
 currentEditID = "";
+currentTitle = "";
+currentDescription = "";
+currentImg = "";
+currentDate = "";
 
 function loadPosts() {
   $(".dashboard > .card").remove();
@@ -16,25 +20,45 @@ function loadPosts() {
       console.log(error);
     }
   }).done(function() {
-    cardList.forEach(post =>{
-      let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
-      let description = $(`<p class="card-text"> ${post.description}</p>`);
-      let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
-      let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
-      let cardFooterButtons = 
-      $(`<li class="list-inline-item pr-2">
-      <button type="button" class="buttonEdit" data-id="${post.id}" data-toggle="modal" data-target="#editModal"><i class="material-icons">edit</i></button>
-      </li>
-      <li class="list-inline-item pr-2">
-      <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
-      </li>  `);
-      let cardImg = $(`<div class="view overlay">`).append(img);
-      let cardBody = $(`<div class="card-body">`).append(title,description);
-      let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
-      <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
-      let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
-      $("#list").append(card);
-    })
+    if(admin){
+      cardList.forEach(post =>{
+        let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
+        let description = $(`<p class="card-text"> ${post.description}</p>`);
+        let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
+        let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
+        let cardFooterButtons = 
+        $(`<li class="list-inline-item pr-2">
+        <button type="button" class="buttonEdit" data-id="${post.id}"
+        data-title="${post.title}" data-description="${post.description}" 
+        data-img="${post.img}" data-date="${post.date}" data-toggle="modal" data-target="#editModal">
+        <i class="material-icons">edit</i></button>
+        </li>
+        <li class="list-inline-item pr-2">
+        <button type="button" class="buttonClose" data-id="${post.id}"><i class="material-icons">delete</i></button>
+        </li>  `);
+        let cardImg = $(`<div class="view overlay">`).append(img);
+        let cardBody = $(`<div class="card-body">`).append(title,description);
+        let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+        <ul class="list-unstyled list-inline font-small">`).append(date,cardFooterButtons);
+        let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
+        $("#list").append(card);
+      })
+    }
+    else{
+      cardList.forEach(post =>{
+        let title = $(`<h4 class="card-title"> ${post.title}</h4><hr>`);
+        let description = $(`<p class="card-text"> ${post.description}</p>`);
+        let date = $(`<li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>${post.date}</li>`);
+        let img = $(`<img class="card-img-top" src="${post.img}" alt="Card image cap"></img>`);
+        let cardImg = $(`<div class="view overlay">`).append(img);
+        let cardBody = $(`<div class="card-body">`).append(title,description);
+        let cardFooter = $(`<div class="rounded-bottom mdb-color lighten-3 text-center pt-3">
+        <ul class="list-unstyled list-inline font-small">`).append(date);
+        let card = $(`<div class="card" style="width: 22rem;">`).append(cardImg,cardBody,cardFooter);
+        $("#list").append(card);
+      })
+    }
+    
   });
 }
 
@@ -43,10 +67,10 @@ $("#newPostButton").click(function(){
   let description = $("#inputDescripcion").val();
   let img = $("#inputImg").val();
   let dateRaw = new Date($('#dateInput').val());
-  let day = dateRaw.getDate() + 1;
-  let month = dateRaw.getMonth() + 1;
+  let day = dateRaw.getDate();
+  let month = dateRaw.getMonth();
   let year = dateRaw.getFullYear();
-  let date = day + '/' + month + '/' + year;
+  let date = year + '-' + month + '-' + day;
   let obj = {
     title : title,
     description : description,
@@ -96,7 +120,6 @@ $("#list").on('click', ".buttonClose", function(event){
   });
 });
 
-/*<<<<<<< HEAD*/
 $("#list").on('click', ".buttonEdit", function(event){
   event.preventDefault();
   let idU = $(this).data("id");
@@ -107,9 +130,11 @@ $("#list").on('click', ".buttonEdit", function(event){
   }
 });
 
-/*=======*/
 $("#editPostButton").click(function(){
-/*>>>>>>> ee6f532668171484e4f3953c2f1bc0fe3ed84ef7*/
+  $("#inputTituloE").val(currentTitle);
+  $("#inputDescripcionE").val(currentDescription);
+  $("#inputImgE").val(currentImg);
+  $('#dateInputE').val(currentDate);
   let title = $("#inputTituloE").val();
   let description = $("#inputDescripcionE").val();
   let img = $("#inputImgE").val();
@@ -145,6 +170,10 @@ $("#editPostButton").click(function(){
 $("#list").on('click', ".buttonEdit", function(event){
   event.preventDefault();
   currentEditID = $(this).data("id");
+  currentTitle = $(this).data("title");
+  currentDescription = $(this).data("description");
+  currentImg = $(this).data("img");
+  currentDate = $(this).data("date");
 });
 
 function cleanInputs(){
